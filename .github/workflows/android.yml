@@ -26,6 +26,10 @@ jobs:
       - name: Add Android platform
         run: npx cap add android
 
+      - name: Match system bars to app color
+        run: |
+          sed -i 's|<item name="android:background">@null</item>|&\n        <item name="android:statusBarColor">#F2F2F7</item>\n        <item name="android:navigationBarColor">#F2F2F7</item>\n        <item name="android:windowLightStatusBar">true</item>\n        <item name="android:windowLightNavigationBar">true</item>|' android/app/src/main/res/values/styles.xml
+
       - name: Sync
         run: npx cap sync android
 
